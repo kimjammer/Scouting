@@ -1,0 +1,24 @@
+{
+	"name": "sveltekit",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "svelte-kit dev",
+		"build": "svelte-kit build",
+		"package": "svelte-kit package",
+		"preview": "svelte-kit preview",
+		"prepare": "svelte-kit sync",
+		"startserver": "node ./src/server/main.js"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "next",
+		"@sveltejs/kit": "next",
+		"attractions": "^3.7.0",
+		"postcss": "^8.4.14",
+		"sass": "^1.52.2",
+		"svelte": "^3.46.0",
+		"svelte-preprocess": "^4.10.6"
+	},
+	"type": "module",
+	"dependencies": {
+	}
+}
