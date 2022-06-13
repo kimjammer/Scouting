@@ -1,5 +1,8 @@
 <script>
-	export let matchTime = 0;
+	import {time} from "../time.js";
+
+	//Basically just renames time to matchTime, but it updates reactively
+	$: matchTime = $time;
 	let modeTime = 0;
 
 	//Update the modeTime everytime the matchTime changes

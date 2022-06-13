@@ -15,11 +15,6 @@
 	//Converts the object into a list of just the values. Those hold the scouter's socket.id or null if there is no scouter
 	//assigned to that team.
 	$: scouterStatus = Object.values(scouterAssignments);
-
-	let matchTime = 0;
-	time.subscribe(value => {
-		matchTime = value;
-	})
 </script>
 
 <div class="wrapper">
@@ -30,7 +25,7 @@
 
 	<!--Middle Section-->
 	<div class="middle">
-		<Timer bind:matchTime={matchTime}/>
+		<Timer/>
 	</div>
 
 	<!--Right Section-->

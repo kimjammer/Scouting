@@ -2,12 +2,12 @@
 	import { io } from "socket.io-client";
 	import InfoBar from "../components/InfoBar.svelte";
 	import InputBox from "../components/scouter/InputBox.svelte"
+	import {time} from "../components/time.js";
 	import {onMount} from "svelte";
 
 	let scouterAssignment = "Unknown";
 	let teamNumber = "Unknown";
 	let connected = false;
-	let matchTime = 0;
 
 	onMount(() => {
 		//Connect to server socket.io
@@ -23,8 +23,8 @@
 		socket.on("teamAssignment", (teamAssignments) => {
 			teamNumber = teamAssignments[`${scouterAssignment}`];
 		})
-		socket.on("timeUpdate", (time) => {
-			matchTime = time;
+		socket.on("timeUpdate", (newTime) => {
+			time.set(newTime);
 		})
 		socket.on("matchOver", () => {
 			//TODO: Compile timeline into object and send to server.
@@ -40,7 +40,7 @@
 </script>
 
 <main>
-	<InfoBar teamNumber={teamNumber} scouterID={scouterAssignment} connected={connected} matchTime={matchTime}/>
+	<InfoBar teamNumber={teamNumber} scouterID={scouterAssignment} connected={connected}/>
 	<InputBox/>
 </main>
 

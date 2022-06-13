@@ -6,7 +6,6 @@
 	export let teamNumber = 9999;
 	export let scouterID = "A0";
 	export let connected = false;
-	export let matchTime = 0;
 </script>
 
 <div class="wrapper">
@@ -20,7 +19,7 @@
 		<div class="infoBox">
 			Team: {teamNumber}
 		</div>
-		<Timer bind:matchTime={matchTime}/>
+		<Timer/>
 		<div class="infoBox">
 			Scouter: {scouterID}
 		</div>

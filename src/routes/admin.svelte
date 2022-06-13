@@ -24,10 +24,7 @@
 		});
 
 		//This runs everytime the current match time changes.
-		time.subscribe(value => {
-			//Send updated time to server, where it will be relayed to all scouters.
-			adminNetwork.emit('timeUpdate', value);
-		})
+		$: adminNetwork.emit('timeUpdate', $time);
 	});
 
 	const teamAssignment = (event) => {
