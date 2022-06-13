@@ -3,8 +3,10 @@
 	import {Button} from 'attractions';
 	import logo from '../assets/Panda.png'
 
-	let teamNumber = 9999;
-	let scouterID = "A0";
+	export let teamNumber = 9999;
+	export let scouterID = "A0";
+	export let connected = false;
+	export let matchTime = 0;
 </script>
 
 <div class="wrapper">
@@ -18,7 +20,7 @@
 		<div class="infoBox">
 			Team: {teamNumber}
 		</div>
-		<Timer/>
+		<Timer bind:matchTime={matchTime}/>
 		<div class="infoBox">
 			Scouter: {scouterID}
 		</div>
@@ -26,7 +28,7 @@
 
 	<!--Right Section-->
 	<div class="right">
-		<div id="connectionStatus">
+		<div class="connectionStatus" class:connected={connected} class:disconnected={!connected}>
 			📡
 		</div>
 		<Button filled>
@@ -70,12 +72,19 @@
 	padding: 0.3em;
 	background-color: #bbcede;
   }
-  #connectionStatus {
+  .connectionStatus {
     font-size: xx-large;
 	border-radius: theme.$border-radius;
 	background-color: green;
   }
   #panda {
     height: 12vh;
+  }
+
+  .connected {
+    background-color: green;
+  }
+  .disconnected {
+    background-color: red;
   }
 </style>

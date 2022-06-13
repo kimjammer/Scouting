@@ -1,6 +1,25 @@
 <script>
 	import Timer from './scouter/Timer.svelte';
 	import logo from '../assets/Panda.png'
+	import {time} from "./time.js";
+
+	export let scouterAssignments = {
+		R1: null,
+		R2: null,
+		R3: null,
+		B1: null,
+		B2: null,
+		B3: null,
+	};
+
+	//Converts the object into a list of just the values. Those hold the scouter's socket.id or null if there is no scouter
+	//assigned to that team.
+	$: scouterStatus = Object.values(scouterAssignments);
+
+	let matchTime = 0;
+	time.subscribe(value => {
+		matchTime = value;
+	})
 </script>
 
 <div class="wrapper">
@@ -11,29 +30,17 @@
 
 	<!--Middle Section-->
 	<div class="middle">
-		<Timer/>
+		<Timer bind:matchTime={matchTime}/>
 	</div>
 
 	<!--Right Section-->
 	<div class="right">
-		<div class="connectionStatus">
-			📡
-		</div>
-		<div class="connectionStatus">
-			📡
-		</div>
-		<div class="connectionStatus">
-			📡
-		</div>
-		<div class="connectionStatus">
-			📡
-		</div>
-		<div class="connectionStatus">
-			📡
-		</div>
-		<div class="connectionStatus">
-			📡
-		</div>
+		{#each scouterStatus as scouter, index}
+			<!--Give it connected if the status is a truthy value(socket.id) or disconnected if it is falsy.-->
+			<div class="connectionStatus" class:connected={scouterStatus[index]} class:disconnected={!scouterStatus[index]}>
+				📡
+			</div>
+		{/each}
 	</div>
 </div>
 
@@ -65,8 +72,14 @@
   .connectionStatus {
     font-size: x-large;
     border-radius: theme.$border-radius;
-    background-color: green;
   }
+  .connected {
+	background-color: green;
+  }
+  .disconnected {
+	background-color: red;
+  }
+
   #panda {
     height: 12vh;
   }

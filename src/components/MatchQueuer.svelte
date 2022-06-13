@@ -1,48 +1,38 @@
 <script>
 	import {Button, TextField} from "attractions";
-	import {time} from 'time.js';
-	import {onDestroy} from "svelte";
+	import {createEventDispatcher} from "svelte";
 
-	const teamIDs = ['R1','R2','R3','B1','B2','B3']
+	const teamIDs = ['R1','R2','R3','B1','B2','B3'];
 
+	//This objects shows which scouter will get which team number. For example, Red 1 is team 1747, etc...
+	let teamAssignments = {
+		R1: null,
+		R2: null,
+		R3: null,
+		B1: null,
+		B2: null,
+		B3: null,
+	};
+
+	const dispatch = createEventDispatcher();
 	const queueMatch = () => {
-		//Reset Timer
-		time.set(150);
-
-		//Send Scouters their team assignment
-		//TODO: Implement sending team assignment to scouters
-	}
-
-	//Helper function that runs a given callback function every x milliseconds
-	let interval;
-	export function onInterval(callback, milliseconds) {
-		interval = setInterval(callback, milliseconds);
-
-		onDestroy(() => {
-			clearInterval(interval);
+		//Creates an event to tell the parent element (admin.svelte) to tell the server the team assignments.
+		dispatch('queueTeams', {
+			teamAssignments: teamAssignments,
 		});
-	}
-
-	//Timer tick interval in ms
-	const timerInterval = 1000;
-	const startTimer = () => {
-		onInterval(tickTimer, timerInterval);
-	}
-
-	const tickTimer = () => {
-		time.update(n => n + 1)
 	}
 
 </script>
 
 <div class="wrapper">
-	<h1>Timer</h1>
-	<Button outline>Start Timer</Button>
+	<h1>Match Queuer</h1>
 
 	<div class="teamInput">
 		{#each teamIDs as teamID}
 			<div class="entryArea" class:red="{teamID[0] === 'R'}" class:blue="{teamID[0] === 'B'}">
-				<TextField outline noSpinner label={teamID} type="number"></TextField>
+				<!--Set the label to the team id. Bind the current value (input) of the field to the team assignments object,
+				with the proper key (R1, B2, etc) provided by the each loop.-->
+				<TextField outline noSpinner label={teamID} type="number" bind:value={teamAssignments[`${teamID}`]}></TextField>
 			</div>
 		{/each}
 	</div>
@@ -50,7 +40,6 @@
 	<TextField outline noSpinner label="Match Number" type="number"></TextField>
 	<br>
 	<Button filled on:click={queueMatch}>Queue Match</Button>
-	<Button filled on:click={startTimer}>Start Timer</Button>
 </div>
 
 <style lang="scss">

@@ -1,13 +1,13 @@
 {
-	"name": "sveltekit",
-	"version": "0.0.1",
+	"name": "FRC Scouting",
+	"version": "2.0.0-alpha",
 	"scripts": {
-		"dev": "svelte-kit dev",
+		"dev": "svelte-kit dev --port 80",
 		"build": "svelte-kit build",
 		"package": "svelte-kit package",
 		"preview": "svelte-kit preview",
 		"prepare": "svelte-kit sync",
-		"startserver": "node ./src/server/main.js"
+		"startserver": "node ./server/main.js"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "next",
@@ -18,7 +18,10 @@
 		"svelte": "^3.46.0",
 		"svelte-preprocess": "^4.10.6"
 	},
+	"license": "MIT",
 	"type": "module",
 	"dependencies": {
+		"socket.io": "^4.5.1",
+		"socket.io-client": "^4.5.1"
 	}
 }

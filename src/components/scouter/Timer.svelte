@@ -1,6 +1,17 @@
 <script>
-	let matchTime = 0;
+	export let matchTime = 0;
 	let modeTime = 0;
+
+	//Update the modeTime everytime the matchTime changes
+	$: {
+		if (matchTime > 135) {
+			//Autonomous Period, first 15 seconds
+			modeTime = matchTime - 135;
+		}else {
+			//Teleoperated Period
+			modeTime = matchTime;
+		}
+	}
 
 	// Some code to convert number of seconds to a text string with a zero padding the seconds if less than 10 so it appears
 	// as 1:01 instead of 1:1
