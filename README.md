@@ -36,44 +36,6 @@ Server:
 
 `noAssignmentAvailable` - Informs scouter that there are no more open scouting teams. All 6 teams are already taken.
 
-=======
-# FIRST Robotics Competition Scouting
-
-This program runs a server and website to scout matches and teams in the FIRST Robotics Competition.
-
-## Tech Stack
-
-### Frontend
-
-This uses SvelteKit as the frontend framework, and it uses the built-in router.
-
-All frontend code is inside ./src
-
-### Backend
-
-This runs a standard node.js server, with a mongodb database to store persistent data.
-
-All backend code is inside ./server
-
-### Communication
-
-This uses socket.io for most communication between the server, admin, and scouters.
-
-These are the messages the server and client send:
-
-**Main network**
-
-Client:
-
-`requestScouterAssignment` - Scouter asks the server to be given a team to scout, like R1.
-
-Server:
-
-`scouterAssignment` - Informs scouter of their team, like R1 for Red 1.
-
-`noAssignmentAvailable` - Informs scouter that there are no more open scouting teams. All 6 teams are already taken.
-
->>>>>>> 845c490aaf55e829094a0cb8753ec38c9b4ebf81
 `teamAssignment` - Informs scouter of their team number, like 1747.
 
 `timeUpdate` - Informs scouters of the current game time.
