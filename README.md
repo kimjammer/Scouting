@@ -1,5 +1,3 @@
-# THIS IS ALPHA WORK IN PROGRESS SOFTWARE
-
 # FIRST Robotics Competition Scouting
 
 This program runs a server and website to scout matches and teams in the FIRST Robotics Competition.
