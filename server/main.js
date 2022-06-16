@@ -1,6 +1,18 @@
+import  mongoose  from "mongoose";
 import { Server } from "socket.io";
 import {getKeyByValue} from "./utils.js";
 
+//Connect to mongodb database
+const dbURI = 'mongodb://localhost/FRCScouting'
+mongoose.connect(dbURI)
+	.then(result => {
+		console.log('Connected to db')
+	})
+	.catch(err => {
+		console.log(err);
+	})
+
+//Create Socket.io server
 const io = new Server(3001, { cors: {origin: "*"} });
 const adminNetwork = io.of("/admin")
 
