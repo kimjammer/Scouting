@@ -32,7 +32,7 @@
   @use '../../css/theme.scss';
 
   .wrapper{
-    background-color: #bbcede;
+    background-color: #b9d143;
     height: 80%;
 	border-radius: theme.$border-radius;
     -moz-box-sizing: border-box;

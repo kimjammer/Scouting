@@ -29,7 +29,6 @@ The label must be descriptive and short, as it will be used (with little modific
 	//If the parent component (ExclusiveDurationButtons) calls this function, the button will end its current event
 	//if there is one running.
 	export const endDuration = () => {
-		console.log(name + " recieved command to stop. Am i the dispatcher?: " + isExclusivityDispatcher);
 		if (inProgress && !isExclusivityDispatcher){
 			processDurationEnd();
 		}
@@ -41,7 +40,6 @@ The label must be descriptive and short, as it will be used (with little modific
 			//There is no event in progress, so start tracking a new one
 			inProgress = true;
 			startTime = $time;
-			console.log(name + " starting duration")
 
 			//Send event telling the parent (ExclusiveDurationButtons) (if one exists) that this button was clicked,
 			//so it can tell the other buttons to turn off.
@@ -54,7 +52,6 @@ The label must be descriptive and short, as it will be used (with little modific
 	};
 
 	const processDurationEnd = () => {
-		console.log(name + " ending duration")
 		inProgress = false;
 		endTime = $time;
 		let duration = startTime - endTime;

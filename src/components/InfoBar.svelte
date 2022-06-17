@@ -69,7 +69,7 @@
     height: 100%;
 	border-radius: theme.$border-radius;
 	padding: 0.3em;
-	background-color: #bbcede;
+	background-color: #b9d143;
   }
   .connectionStatus {
     font-size: xx-large;

@@ -1,7 +1,6 @@
 <script>
 	import Timer from './scouter/Timer.svelte';
 	import logo from '../assets/Panda.png'
-	import {time} from "./time.js";
 
 	export let scouterAssignments = {
 		R1: null,

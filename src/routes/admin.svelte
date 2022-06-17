@@ -24,7 +24,9 @@
 		});
 
 		//This runs everytime the current match time changes.
-		$: adminNetwork.emit('timeUpdate', $time);
+		time.subscribe((value) => {
+			adminNetwork.emit('timeUpdate', $time);
+		})
 	});
 
 	const teamAssignment = (event) => {
