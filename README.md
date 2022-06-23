@@ -4,6 +4,8 @@
 
 This program runs a server and website to scout matches and teams in the FIRST Robotics Competition.
 
+**Below information is not needed to use the software, but it should greatly help in understanding and adapting the software for new games or teams.**
+
 ## Tech Stack
 
 ### Frontend
@@ -30,6 +32,8 @@ Client:
 
 `requestScouterAssignment` - Scouter asks the server to be given a team to scout, like R1.
 
+`matchSubmit` - Scouter sends collected data for one team in one match, the team number, and match number.
+
 Server:
 
 `scouterAssignment` - Informs scouter of their team, like R1 for Red 1.
@@ -48,7 +52,8 @@ Client:
 
 `requestScouterStatus` - Admin asks the server which scouters are connected
 
-`teamAssignment` - Admin tells the server the team assignments to all the scouters. (The server will relay to the scouters.)
+`teamAssignment` - Admin tells the server the team assignments and match number. (The server will relay to the scouters.)
+ The server then creates or updates any team or match database entries as needed.
 
 `timeUpdate` - Admin tells the server the new current game time. (The server will relay to the scouters.)
 
@@ -57,6 +62,36 @@ Client:
 Server:
 
 `scouterStatusUpdate` - Sends the admin an updated list of which scouters are connected.
+
+**Stats Network**
+
+Client:
+
+`requestTeams` - Scouter asks the server for a list of all teams.
+
+`requestMatches` - Scouter asks the server for a list of matches played by a team, identified by their team number.
+
+`requestMatchStats` - Scouter asks the server for the statistics for 1 match, identified by team number and match number.
+
+`requestAverageStats` - Scouter asks the server for the statistics for all matches played by a team, identified by their team number.
+
+Server:
+
+`teamList` - Sends the stats client a list of all teams.
+
+`matchList` - Sends the stats client a list of all matches played by a team.
+
+`matchStats` - Sends the stats client the statistics for 1 match.
+
+`averageStats` - Sends the stats client the average statistics for all matches played by a team.
+
+## Installation:
+
+1. Install Node.js
+2. Install MongoDB (probably with Compass so you can easily see the database with a GUI)
+3. In this directory, run `npm install`
+4. Run `npm run dev` to start the development server provided by SvelteKit, and run `npm run startserver` to start the backend.
+5. When done developing, run `npm run build` to get the built files.
 
 ## Other Notes:
 

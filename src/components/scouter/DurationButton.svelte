@@ -27,7 +27,7 @@ The label must be descriptive and short, as it will be used (with little modific
 	let endTime = 0;
 
 	//If the parent component (ExclusiveDurationButtons) calls this function, the button will end its current event
-	//if there is one running.
+	//if there is one running, as long as it wasn't this button that just started.
 	export const endDuration = () => {
 		if (inProgress && !isExclusivityDispatcher){
 			processDurationEnd();
@@ -56,7 +56,7 @@ The label must be descriptive and short, as it will be used (with little modific
 		endTime = $time;
 		let duration = startTime - endTime;
 
-		const event = new DurationEvent(eventName, duration);
+		const event = new DurationEvent(eventName, duration, endTime);
 		//Append to the writable store
 		$timeline = [...$timeline, event]
 	}

@@ -1,10 +1,14 @@
 <script>
 	import Counter from "./Counter.svelte";
-	import {timeline} from './timeline.js'
 	import DurationButton from "./DurationButton.svelte";
 	import {Button} from "attractions";
 	import ExclusiveDurationButtons from "./ExclusiveDurationButtons.svelte";
+	import {createEventDispatcher} from "svelte";
 
+	const dispatch = createEventDispatcher();
+	const handleSwitchToReview = () => {
+		dispatch("switchPageMode");
+	}
 
 </script>
 
@@ -14,7 +18,7 @@
 	<DurationButton name="Hanging">Hanging</DurationButton>
 	<ExclusiveDurationButtons labels="{['Neutral','Defending','Being Defended']}" names="{['Neutral','Defending','Being Defended']}">Defense</ExclusiveDurationButtons>
 
-	<Button filled on:click={console.log($timeline)}>Log Event Timeline</Button>
+	<Button filled on:click={handleSwitchToReview}>Match Review</Button>
 </div>
 
 <style lang="scss">
@@ -25,5 +29,9 @@
 	margin-top: 1em;
     background-color: theme.$secondary-color;
 	border-radius: theme.$border-radius;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0.7em;
   }
 </style>

@@ -11,29 +11,65 @@ const matchSchema = new Schema({
 		min: [1, 'Match number must be positive']
 	},
 	R1: {
-		type: ObjectID,
-		ref: 'TeamMatch'
+		teamMatch: {
+			type: ObjectID,
+			ref: 'TeamMatch'
+		},
+		team: {
+			type: ObjectID,
+			ref: 'Team'
+		}
 	},
 	R2: {
-		type: ObjectID,
-		ref: 'TeamMatch'
+		teamMatch: {
+			type: ObjectID,
+			ref: 'TeamMatch'
+		},
+		team: {
+			type: ObjectID,
+			ref: 'Team'
+		}
 	},
 	R3: {
-		type: ObjectID,
-		ref: 'TeamMatch'
+		teamMatch: {
+			type: ObjectID,
+			ref: 'TeamMatch'
+		},
+		team: {
+			type: ObjectID,
+			ref: 'Team'
+		}
 	},
 	B1: {
-		type: ObjectID,
-		ref: 'TeamMatch'
+		teamMatch: {
+			type: ObjectID,
+			ref: 'TeamMatch'
+		},
+		team: {
+			type: ObjectID,
+			ref: 'Team'
+		}
 	},
 	B2: {
-		type: ObjectID,
-		ref: 'TeamMatch'
+		teamMatch: {
+			type: ObjectID,
+			ref: 'TeamMatch'
+		},
+		team: {
+			type: ObjectID,
+			ref: 'Team'
+		}
 	},
 	B3: {
-		type: ObjectID,
-		ref: 'TeamMatch'
-	}
+		teamMatch: {
+			type: ObjectID,
+			ref: 'TeamMatch'
+		},
+		team: {
+			type: ObjectID,
+			ref: 'Team'
+		}
+	},
 })
 
 //Create a model from the schema and export it.

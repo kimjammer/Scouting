@@ -4,14 +4,28 @@
 	import InputBox from "../components/scouter/InputBox.svelte"
 	import {time} from "../components/time.js";
 	import {onMount} from "svelte";
+	import MatchReview from "../components/scouter/MatchReview.svelte";
+	import {get} from "svelte/store";
+	import {timeline} from "../components/scouter/timeline.js";
 
 	let scouterAssignment = "Unknown";
 	let teamNumber = "Unknown";
 	let connected = false;
+	let matchNumber = 0;
 
+	let pageMode = "scouting";
+	const switchPageMode = () => {
+		if (pageMode === "scouting") {
+			pageMode = "review";
+		}else {
+			pageMode = "scouting";
+		}
+	}
+
+	let socket;
 	onMount(() => {
 		//Connect to server socket.io
-		const socket = io(`${window.location.host}:3001`);
+		socket = io(`${window.location.host}:3001`);
 
 		socket.emit("requestScouterAssignment");
 		socket.on("scouterAssignment", (assignment) => {
@@ -20,14 +34,15 @@
 		socket.on("noAssignmentAvailable", () => {
 			scouterAssignment = "Full";
 		})
-		socket.on("teamAssignment", (teamAssignments) => {
+		socket.on("teamAssignment", (teamAssignments, matchNum) => {
 			teamNumber = teamAssignments[`${scouterAssignment}`];
+			matchNumber = matchNum;
 		})
 		socket.on("timeUpdate", (newTime) => {
 			time.set(newTime);
 		})
 		socket.on("matchOver", () => {
-			//TODO: Compile timeline into object and send to server.
+			//TODO: Determine if this needs to exist.
 		})
 
 		socket.on("connect", () => {
@@ -37,11 +52,69 @@
 			connected = false;
 		});
 	});
+
+	//This pulls the current timeline and converts it to an object intelligently
+	const convertTimelineToObj = () => {
+		let timelineCopy = get(timeline);
+		let matchObject = {};
+
+		for (let i = 0; i < timelineCopy.length; i ++) {
+			let event = timelineCopy[i]
+			let eventType = event.constructor.name;
+
+			/* Automatic Conversions of known event types */
+
+			//Handle CountEvent
+			if (eventType === "CountEvent") {
+				//If counter doesn't exist in object, create it
+				if (!matchObject[event.eventName]) {
+					matchObject[event.eventName] = 0;
+				}
+
+				matchObject[event.eventName] += event.amount;
+			}
+			//Handle DurationEvent
+			else if (eventType === "DurationEvent") {
+				//If list of events doesn't exist yet, create it
+				if (!matchObject[event.eventName]) {
+					matchObject[event.eventName] = [];
+				}
+
+				matchObject[event.eventName].push(event);
+			}
+			//Handle MistakeEvent
+			else if (eventType === "MistakeEvent") {
+				//Do nothing
+			}
+
+			/* Manual Conversion of special, game-specific elements */
+
+			//None in the barebones example, place custom code here.
+		}
+
+		return matchObject;
+	}
+
+	//Convert the timeline to an object and send to server.
+	const matchSumbit = () => {
+		socket.emit("matchSubmit", convertTimelineToObj(), teamNumber, matchNumber, scouterAssignment);
+		//Clear the timeline
+		timeline.set([]);
+	}
 </script>
+
+<svelte:head>
+	<title>FRC Scouting</title>
+	<html lang="en" />
+</svelte:head>
 
 <main>
 	<InfoBar teamNumber={teamNumber} scouterID={scouterAssignment} connected={connected}/>
-	<InputBox/>
+	{#if pageMode == "scouting"}
+		<InputBox on:switchPageMode={switchPageMode}/>
+	{:else}
+		<MatchReview on:switchPageMode={switchPageMode} on:matchSubmit={matchSumbit}/>
+	{/if}
 </main>
 
 <style>

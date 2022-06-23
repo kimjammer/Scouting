@@ -30,7 +30,7 @@
 	});
 
 	const teamAssignment = (event) => {
-		adminNetwork.emit('teamAssignment', event.detail.teamAssignments)
+		adminNetwork.emit('teamAssignment', event.detail.teamAssignments, event.detail.matchNum)
 	}
 
 	const broadcastMatchOver = () => {
@@ -38,6 +38,11 @@
 	}
 
 </script>
+
+<svelte:head>
+	<title>FRC Scouting Admin</title>
+	<html lang="en" />
+</svelte:head>
 
 <main>
 	<AdminInfoBar bind:scouterAssignments={scouterAssignments}/>

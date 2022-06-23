@@ -14,8 +14,12 @@ const teamMatchSchema = new Schema({
 		type: ObjectID,
 		ref: 'Match'
 	},
+	position: {
+		type: String,
+		enum: ['R1', 'R2', 'R3', 'B1', 'B2', 'B3'],
+	},
 	//Since the exact layout of the data collected changes every year with every new game, the type is "Mixed", which
-	//allows any data. Read more at: https://mongoosejs.com/docs/schematypes.html#mixed
+	//allows any kind of data, including objects. Read more at: https://mongoosejs.com/docs/schematypes.html#mixed
 	data: {
 		type: Mixed
 	}

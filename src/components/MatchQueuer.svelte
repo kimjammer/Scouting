@@ -14,11 +14,14 @@
 		B3: null,
 	};
 
+	let matchNum = null;
+
 	const dispatch = createEventDispatcher();
 	const queueMatch = () => {
 		//Creates an event to tell the parent element (admin.svelte) to tell the server the team assignments.
 		dispatch('queueTeams', {
 			teamAssignments: teamAssignments,
+			matchNum: matchNum,
 		});
 	}
 
@@ -37,7 +40,7 @@
 		{/each}
 	</div>
 
-	<TextField outline noSpinner label="Match Number" type="number"></TextField>
+	<TextField outline noSpinner label="Match Number" type="number" bind:value={matchNum}></TextField>
 	<br>
 	<Button filled on:click={queueMatch}>Queue Match</Button>
 </div>

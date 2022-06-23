@@ -1,11 +1,21 @@
 <script>
 	import Timer from './scouter/Timer.svelte';
 	import {Button} from 'attractions';
+	import {timeline} from "./scouter/timeline.js";
 	import logo from '../assets/Panda.png'
+	import {time} from "./time.js";
+	import {MistakeEvent} from "./classes/MistakeEvent.js";
 
 	export let teamNumber = 9999;
 	export let scouterID = "A0";
 	export let connected = false;
+
+	//When the mistake button is pressed, add a mistake to the timeline
+	const handleMistake = () => {
+		const event = new MistakeEvent($time);
+		//Append to the writable store
+		$timeline = [...$timeline, event];
+	}
 </script>
 
 <div class="wrapper">
@@ -30,7 +40,7 @@
 		<div class="connectionStatus" class:connected={connected} class:disconnected={!connected}>
 			📡
 		</div>
-		<Button filled>
+		<Button filled on:click={handleMistake}>
 			Mistake
 		</Button>
 	</div>

@@ -1,19 +1,42 @@
 <script>
-	import { Headline} from "attractions";
+	import {Button, Headline} from "attractions";
+	import {onMount} from "svelte";
 
+	export let socket;
 	let teams = [];
 
-	//Dummy Data
-	teams = ["4821","1984","1747","2001","1984","1747","2001","1984","1747","2001","1984","1747","2001","1984","1747","2001","1984","1747","2001","1984","1747","2001","1984","1747","2001","1984","1747","2001","1984","1747","2001"];
+	onMount(() => {
+		//This code snippet waits for the socket to become defined by the parent before setting up functions
+		(async() => {
+			//While the variable is undefined, check again every 100ms
+			while(!socket)
+				await new Promise(resolve => setTimeout(resolve, 100));
+			//If code reaches this point, the socket is defined
+
+
+			//Request list of teams from server
+			socket.emit("requestTeams");
+
+			//Listen for teams from server
+			socket.on("teamList", (teamList) => {
+				teams = teamList;
+			});
+		})();
+	})
+
+	const handleTeamSelect = (team) => {
+		socket.emit("requestMatches", team.teamNumber);
+	}
+
 </script>
 
 <div class="wrapper">
 	<Headline>Teams:</Headline>
 
 	{#each teams as team}
-		<div class="teamNumber">
-			{team}
-		</div>
+		<Button small on:click={() => handleTeamSelect(team)}>
+			{team.teamNumber}
+		</Button>
 	{/each}
 
 
@@ -37,9 +60,12 @@
 	overflow-y: scroll;
   }
 
+  /*
   .teamNumber {
 	margin: 0.3em;
 	font-size: larger;
   }
+  */
+
 
 </style>

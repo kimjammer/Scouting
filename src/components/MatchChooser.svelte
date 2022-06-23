@@ -1,20 +1,50 @@
 <script>
-	import {H1, H2, Headline} from "attractions";
+	import {Button, H1, H2, Headline} from "attractions";
+	import {onMount} from "svelte";
 
-	let matches;
+	export let socket;
+	let matches = [];
+	let teamNumber;
 
-	//Dummy Data
-	matches = [1,3,9,19,24]
+	onMount(() => {
+		//This code snippet waits for the socket to become defined by the parent before setting up functions
+		(async() => {
+			//While the variable is undefined, check again every 100ms
+			while(!socket)
+				await new Promise(resolve => setTimeout(resolve, 100));
+			//If code reaches this point, the socket is defined
+
+			//When the match list is received, updated the matches variable to show the user.
+			socket.on("matchList", (matchList, teamNum) => {
+				console.log(matchList);
+				matches = matchList;
+				teamNumber = teamNum;
+			});
+		})();
+
+	});
+
+	//Send event to get statistics of this match
+	const handleMatchSelect = (match) => {
+		socket.emit("requestMatchStats", match.matchNumber, teamNumber);
+	}
+
+	//Send event to get statistics of average of all matches
+	const handleAverageSelect = () => {
+		socket.emit("requestAverageStats", teamNumber);
+	}
 </script>
 
 <div class="wrapper">
 	<Headline>Choose Match:</Headline>
 
-	<H1>Average</H1>
+	<Button small on:click="{handleAverageSelect}">
+		<H1>Average</H1>
+	</Button>
 	{#each matches as match}
-		<div class="matchNumber">
-			<H2>{match}</H2>
-		</div>
+		<Button small on:click={() => handleMatchSelect(match)}>
+			<H2>{match.matchNumber}</H2>
+		</Button>
 	{/each}
 </div>
 
