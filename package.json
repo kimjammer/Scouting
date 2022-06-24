@@ -2,7 +2,7 @@
 	"name": "FRC Scouting",
 	"version": "2.0.0-alpha",
 	"scripts": {
-		"dev": "svelte-kit dev --port 80",
+		"dev": "svelte-kit dev --port 80 --host",
 		"build": "svelte-kit build",
 		"package": "svelte-kit package",
 		"preview": "svelte-kit preview",
@@ -10,7 +10,7 @@
 		"startserver": "node ./server/main.js"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "next",
+		"@sveltejs/adapter-node": "next",
 		"@sveltejs/kit": "next",
 		"attractions": "^3.7.0",
 		"postcss": "^8.4.14",

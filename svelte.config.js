@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-auto';
+import adapter from '@sveltejs/adapter-node';
 import preprocess from 'svelte-preprocess'
 import makeAttractionsImporter from 'attractions/importer.js';
 import path from 'path';
@@ -23,7 +23,7 @@ const config = {
 		},
 	}),
 	kit: {
-		adapter: adapter(),
+		adapter: adapter({}),
 
 		// Override http methods in the Todo forms
 		methodOverride: {
