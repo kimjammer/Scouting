@@ -34,7 +34,7 @@ The labels must be descriptive and short, as it will be used (with little modifi
 </div>
 
 <style lang="scss">
-  @use '../../css/theme.scss';
+  @use '../../../css/theme.scss';
 
   .wrapper {
 	display: inline-flex;

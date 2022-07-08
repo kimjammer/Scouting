@@ -185,6 +185,10 @@ For moving data between components in one "site", a couple of methods are used. 
 time on the admin side. Svelte custom events are fired to move information from a child to parent component, like when
 the time controller emits the matchOver event to the parent admin.svelte, so it can send the socket.io messages.
 
+EventComponents are buttons and things that directly add information (events) to the timeline. StateComponents change
+the current state of the game, so that EventComponents can react accordingly. For example, There might be a EventComponent Goal Counter Button,
+but it can register high or low goal depending on the toggleable gamestate set by a StateComponent button.
+
 ## License
 
 This is open-source software shared under the MIT License. You may freely use, modify, and distribute it,

@@ -5,9 +5,9 @@ The label must be descriptive and short, as it will be used (with little modific
 -->
 <script>
 	import {Button} from "attractions";
-	import {DurationEvent} from "../classes/DurationEvent.js";
-	import {timeline} from './timeline.js';
-	import {time} from '../time.js';
+	import {DurationEvent} from "../../classes/DurationEvent.js";
+	import {timeline} from '../timeline.js';
+	import {time} from '../../time.js';
 	import {createEventDispatcher} from "svelte";
 
 	const dispatch = createEventDispatcher();

@@ -5,9 +5,9 @@ The label must be descriptive and short, as it will be used (with little modific
 -->
 <script>
 	import {Button} from "attractions";
-	import {CountEvent} from "../classes/CountEvent.js";
-	import {timeline} from './timeline.js';
-	import {time} from '../time.js';
+	import {CountEvent} from "../../classes/CountEvent.js";
+	import {timeline} from '../timeline.js';
+	import {time} from '../../time.js';
 
 	export let name = "Unknown";
 	export let amount = 0;
