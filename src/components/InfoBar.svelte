@@ -2,7 +2,8 @@
 	import Timer from './scouter/Timer.svelte';
 	import {Button} from 'attractions';
 	import {timeline} from "./scouter/timeline.js";
-	import logo from '../assets/Panda.png'
+	import logo from '../assets/Panda.png';
+	import egg1 from '../assets/Happanda.png';
 	import {time} from "./time.js";
 	import {MistakeEvent} from "./classes/MistakeEvent.js";
 
@@ -21,7 +22,7 @@
 <div class="wrapper">
 	<!--Left Section-->
 	<div class="left">
-		<img src={logo} alt="Panda Logo" id="panda"/>
+		<img src={teamNumber === 1747 ? egg1 : logo} alt={teamNumber === 1747 ? "A cool panda for a cool team" : "Pixel panda"} id="panda"/>
 	</div>
 
 	<!--Middle Section-->
