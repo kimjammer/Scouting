@@ -22,6 +22,7 @@
 <div class="wrapper">
 	<!--Left Section-->
 	<div class="left">
+		<!-- determines if the team assigned is the funny team and will update the image for a cool easter egg -->
 		<img src={teamNumber === 1747 ? egg1 : logo} alt={teamNumber === 1747 ? "A cool panda for a cool team" : "Pixel panda"} id="panda"/>
 	</div>
 
