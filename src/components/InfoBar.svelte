@@ -23,7 +23,11 @@
 	<!--Left Section-->
 	<div class="left">
 		<!-- determines if the team assigned is the funny team and will update the image for a cool easter egg -->
-		<img src={teamNumber === 1747 ? egg1 : logo} alt={teamNumber === 1747 ? "A cool panda for a cool team" : "Pixel panda"} id="panda"/>
+		{#if teamNumber == 1747}
+			<img src={egg1} alt="A cool panda for a cool team" id="panda"/>
+		{:else}
+			<img src={logo} alt="Pixel panda" id="panda"/>
+		{/if}
 	</div>
 
 	<!--Middle Section-->
