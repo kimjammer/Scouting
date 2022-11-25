@@ -1,5 +1,4 @@
 <script>
-	import logo from '../assets/Panda.png'
 	import {Headline} from "attractions";
 	export let connected = false;
 </script>
@@ -7,7 +6,7 @@
 <div class="wrapper">
 	<!--Left Section-->
 	<div class="left">
-		<img src={logo} alt="Panda Logo" id="panda"/>
+		<img src="/Logo.png" alt="Panda Logo" id="panda"/>
 	</div>
 
 	<!--Middle Section-->

@@ -2,7 +2,6 @@
 	import Timer from './scouter/Timer.svelte';
 	import {Button} from 'attractions';
 	import {timeline} from "./scouter/timeline.js";
-	import logo from '../assets/Panda.png'
 	import {time} from "./time.js";
 	import {MistakeEvent} from "./classes/MistakeEvent.js";
 
@@ -21,7 +20,12 @@
 <div class="wrapper">
 	<!--Left Section-->
 	<div class="left">
-		<img src={logo} alt="Panda Logo" id="panda"/>
+		<!-- Determines if the team assigned is the funny team and will update the image for a cool easter egg -->
+		{#if teamNumber == 1747}
+			<img src="/happanda.png" alt="A cool panda for a cool team" class="logo"/>
+		{:else}
+			<img src="/Logo.png" alt="Pixel panda" class="logo"/>
+		{/if}
 	</div>
 
 	<!--Middle Section-->
@@ -86,7 +90,7 @@
 	border-radius: theme.$border-radius;
 	background-color: green;
   }
-  #panda {
+  .logo {
     height: 12vh;
   }
 
