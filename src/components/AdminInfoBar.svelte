@@ -1,6 +1,5 @@
 <script>
 	import Timer from './scouter/Timer.svelte';
-	import logo from '../assets/Panda.png'
 
 	export let scouterAssignments = {
 		R1: null,
@@ -19,7 +18,7 @@
 <div class="wrapper">
 	<!--Left Section-->
 	<div class="left">
-		<img src={logo} alt="Panda Logo" id="panda"/>
+		<img src="/Logo.png" alt="Panda Logo" id="panda"/>
 	</div>
 
 	<!--Middle Section-->
