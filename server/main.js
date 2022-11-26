@@ -205,7 +205,13 @@ statsNetwork.on("connection", (socket) => {
 	socket.on("requestAverageStats", async (teamNum) => {
 		let teamDoc = await Team.findOne({teamNumber: teamNum});
 		let teamMatchList = [];
-		let teamMatchIDs = teamDoc.matches;
+		let teamMatchIDs;
+		//Don't crash if a team hasn't played any matches yet.
+		try {
+			teamMatchIDs = teamDoc.matches;
+		} catch (e) {
+			return;
+		}
 		for (const matchID of teamMatchIDs) {
 			teamMatchList.push(await TeamMatch.findById(matchID));
 		}
