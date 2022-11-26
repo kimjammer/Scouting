@@ -111,8 +111,10 @@
 <main>
 	<InfoBar teamNumber={teamNumber} scouterID={scouterAssignment} connected={connected}/>
 	{#if pageMode == "scouting"}
+		<!--This is where all the input and buttons are.-->
 		<InputBox on:switchPageMode={switchPageMode}/>
 	{:else}
+		<!--This is where the scouter reviews their inputs and submits it.-->
 		<MatchReview on:switchPageMode={switchPageMode} on:matchSubmit={matchSumbit}/>
 	{/if}
 </main>
