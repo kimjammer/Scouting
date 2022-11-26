@@ -1,7 +1,8 @@
 <!--
 @component StateToggle
 Needs a label.
-The label must be descriptive and short, as it will be used (with little modification) as the gateState it toggles.
+The label must be descriptive and short, as it will be used (with little modification) as the gameState it toggles.
+This should not be data that needs to be remembered, as it will not be included in the timeline.
 -->
 <script>
 	import {Button} from "attractions";
@@ -30,7 +31,7 @@ The label must be descriptive and short, as it will be used (with little modific
 	};
 </script>
 
-<Button filled on:click={handleClick} danger={$gameState[`${gameStateName}`]}>
+<Button filled on:click={handleClick} on:click danger={$gameState[`${gameStateName}`]}>
 	<slot></slot>
 </Button>
 

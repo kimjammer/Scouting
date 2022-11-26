@@ -1,8 +1,9 @@
 <!--
 @component DurationButton
-Needs a label.
-The label must be descriptive and short, as it will be used (with little modification) as db key.
+Needs a name.
+The name must be descriptive and short, as it will be used (with little modification) as db key.
 -->
+<svelte:options accessors={true}/>
 <script>
 	import {Button} from "attractions";
 	import {DurationEvent} from "../../classes/DurationEvent.js";
@@ -22,6 +23,7 @@ The label must be descriptive and short, as it will be used (with little modific
 	const eventName = name.replaceAll(' ','_').toLowerCase();
 
 	//Variables that keep track of the button's status
+	export let isDisabled = false;
 	let inProgress = false;
 	let startTime = 0;
 	let endTime = 0;
@@ -43,6 +45,7 @@ The label must be descriptive and short, as it will be used (with little modific
 
 			//Send event telling the parent (ExclusiveDurationButtons) (if one exists) that this button was clicked,
 			//so it can tell the other buttons to turn off.
+			//TODO: This might break if there are more than one exclusive button sets.
 			isExclusivityDispatcher = true;
 			dispatch('durationBtnPressed');
 		}else{
@@ -62,7 +65,7 @@ The label must be descriptive and short, as it will be used (with little modific
 	}
 </script>
 
-<Button outline on:click={handleClick} selected={inProgress}>
+<Button outline on:click={handleClick} on:click selected={inProgress} disabled={isDisabled}>
 	<slot></slot>
 </Button>
 
