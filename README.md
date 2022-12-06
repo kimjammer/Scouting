@@ -39,9 +39,10 @@ whole day of scouting. Your laptops might not though.
 1. Plug all 6 scouters + 1 server/admin into the network switch
 2. Start the Scouting software. In this project, there will be 2 servers. The webserver which handles the website, and
 the backend server which manages the database and communication with the scouters.
-   1. To run the webserver, you can use `npm run dev`, but you should probably build the project and use that instead.
+   1. To run the webserver, you can use `npm run dev --port 80 --host`, but you should probably build the project and use that instead.
    Run `npm run build` and once it finishes, run `node build` This will start the node webserver.
    2. To run the backend, run `npm run startserver`.
+   3. Alternatively, do all of this in one command with `npm run competitionLinux` or `npm run competitionWin`
 3. Find the local ip address of the server. You can use `ipconfig` on Windows and look for the ethernet section, or run
 `ip a` on linux systems and look for the ethernet section. Alternatively, on Windows, find the name of the computer
    (usually something like DESKTOP-S7X97ML), and you can use the name with .local on the end like this `http://DESKTOP-S7X97ML.local`
@@ -51,6 +52,18 @@ the backend server which manages the database and communication with the scouter
 5. Confirm that all the radio symbols have turned green, and you are good to scout!
 
 **Below information is not needed to use the software, but it should greatly help in understanding and adapting the software for new games or teams.**
+
+## Editing Code
+
+On most computers, you can just follow the instructions in the "Installation" section and edit the code with the IDE of your choice.
+We use VSCode, but you can use whatever you want. However, we also support development in *Github Codespaces*! So you can still edit
+and develop even if you only have access to a web browser (ie. Chromebook). First, you should get the Github Student Developer
+Pack, so you get 90 (instead of 60) free hours of Codespaces a month. This is enough for our team.
+
+Click the green Code button to the top of the Github, and select the codespaces tab. Make a new codespace or start one you have been
+working on before. Your codespace will setup. Through the .devcontainer files, the codespace will be configured with node.js and mongoDB,
+and npm install will run automatically. Just run `npm run dev` and `npm run startserver` to get started. Codespaces should automatically
+forward these ports for you. When you're done, make sure to stop the codespace so you don't waste your hours.
 
 ## Tech Stack
 

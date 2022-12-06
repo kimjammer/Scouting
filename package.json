@@ -4,8 +4,10 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
-		"preview": "vite preview",
-		"startserver": "node ./server/main.js"
+		"preview": "vite preview --host",
+		"startserver": "node ./server/main.js",
+		"competitionLinux": "node ./server/main.js & vite build && node build",
+		"competitionWin": "start node ./server/main.js && vite build && node build"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-node": "next",
