@@ -8,8 +8,6 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-
-
 const config = {
 	preprocess: preprocess(
 	{
@@ -23,12 +21,7 @@ const config = {
 		},
 	}),
 	kit: {
-		adapter: adapter({}),
-
-		// Override http methods in the Todo forms
-		methodOverride: {
-			allowed: ['PATCH', 'DELETE']
-		}
+		adapter: adapter({})
 	}
 };
 
