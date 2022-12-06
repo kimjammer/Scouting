@@ -2,27 +2,26 @@
 	"name": "FRC Scouting",
 	"version": "2.0.0-alpha",
 	"scripts": {
-		"dev": "svelte-kit dev --port 80 --host",
-		"build": "svelte-kit build",
-		"package": "svelte-kit package",
-		"preview": "svelte-kit preview",
-		"prepare": "svelte-kit sync",
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
 		"startserver": "node ./server/main.js"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-node": "next",
 		"@sveltejs/kit": "next",
 		"attractions": "^3.7.0",
-		"postcss": "^8.4.14",
-		"sass": "^1.52.2",
-		"svelte": "^3.46.0",
-		"svelte-preprocess": "^4.10.6"
+		"postcss": "^8.4.19",
+		"sass": "^1.56.1",
+		"svelte": "^3.53.1",
+		"svelte-preprocess": "^4.10.7",
+		"vite": "^3.2.5"
 	},
 	"license": "MIT",
 	"type": "module",
 	"dependencies": {
-		"mongoose": "^6.3.8",
-		"socket.io": "^4.5.1",
-		"socket.io-client": "^4.5.1"
+		"mongoose": "^6.8.0",
+		"socket.io": "^4.5.4",
+		"socket.io-client": "^4.5.4"
 	}
 }

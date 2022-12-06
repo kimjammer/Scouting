@@ -1,9 +1,9 @@
 <script>
 	import io from "socket.io-client";
-	import TeamList from "../components/TeamList.svelte";
-	import StatsInfoBar from "../components/StatsInfoBar.svelte";
-	import MatchChooser from "../components/MatchChooser.svelte";
-	import StatisticsDisplay from "../components/StatisticsDisplay.svelte";
+	import TeamList from "../../components/TeamList.svelte";
+	import StatsInfoBar from "../../components/StatsInfoBar.svelte";
+	import MatchChooser from "../../components/MatchChooser.svelte";
+	import StatisticsDisplay from "../../components/StatisticsDisplay.svelte";
 	import {onMount} from "svelte";
 
 	let socket;
