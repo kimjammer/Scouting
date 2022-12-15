@@ -105,7 +105,6 @@
 
 <svelte:head>
 	<title>FRC Scouting</title>
-	<html lang="en" />
 </svelte:head>
 
 <main>

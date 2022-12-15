@@ -41,7 +41,6 @@
 
 <svelte:head>
 	<title>FRC Scouting Admin</title>
-	<html lang="en" />
 </svelte:head>
 
 <main>

@@ -6,7 +6,7 @@
 
 <div class="wrapper">
 	<H1>Defense</H1>
-	<ExclusiveDurationButtons labels="{['Neutral','Defending','Being Defended']}" names="{['Neutral','Defending','Being Defended']}">Defense</ExclusiveDurationButtons>
+	<ExclusiveDurationButtons labels="{['Neutral','Defending','Being Defended']}" names="{['Neutral','Defending','Being Defended']}"></ExclusiveDurationButtons>
 </div>
 
 <style lang="scss">

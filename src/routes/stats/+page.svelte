@@ -28,7 +28,6 @@
 
 <svelte:head>
 	<title>FRC Scouting Statistics</title>
-	<html lang="en" />
 </svelte:head>
 
 <main>
