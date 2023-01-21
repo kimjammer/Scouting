@@ -36,7 +36,7 @@ The labels must be descriptive and short, as it will be used (with little modifi
 
   .wrapper {
 	display: inline-flex;
-	flex-direction: column;
+	flex-direction: row;
 	align-content: center;
 	gap:0.5em;
     background-color: theme.$light-contrast;

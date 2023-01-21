@@ -1,28 +1,37 @@
 <script>
+	import { Button, Card } from "attractions";
+	import { createEventDispatcher } from "svelte";
+	import BigButton from "./custom/BigButton.svelte";
 	import Counter from "./EventComponents/Counter.svelte";
-	import DurationButton from "./EventComponents/DurationButton.svelte";
-	import {Button} from "attractions";
 	import ExclusiveDurationButtons from "./EventComponents/ExclusiveDurationButtons.svelte";
-	import StateToggle from './StateComponents/StateToggle.svelte';
-	import {createEventDispatcher} from "svelte";
-	import MechanicalErrors from "./Premade/MechanicalErrors.svelte";
-	import Defense from "./Premade/Defense.svelte";
-	import SequentialEvents from "./EventComponents/SequentialEvents.svelte";
 
 	const dispatch = createEventDispatcher();
 	const handleSwitchToReview = () => {
 		dispatch("switchPageMode");
 	}
+
+	function test() {
+		console.log("HI");
+	}
 </script>
 
 <!--The different input components -->
 <div class="wrapper">
-	<Counter name="High Goal" amount="1">High Goal</Counter>
+	<div class="community">
+		<Counter name="high" amount="1" width="30vw" height="5vh">High</Counter>
+		<Counter name="middle" amount="1" width="30vw" height="5vh">Middle</Counter>
+		<Counter name="low" amount="1" width="30vw" height="5vh">Low</Counter>
+	</div>
+	<div class="chargingstation">
+		<ExclusiveDurationButtons labels="{['nothing','docked','engaged']}" names="{['Nothing','Docked (Not Balanced)','Engaged (Balanced)']}"></ExclusiveDurationButtons>
+	</div>
+	
+	<!-- <Counter name="High Goal" amount="1">High Goal</Counter>
 	<DurationButton name="Hanging">Hanging</DurationButton>
 	<StateToggle name="Bonus Mode">Bonus Mode</StateToggle>
 	<Defense></Defense>
 	<MechanicalErrors></MechanicalErrors>
-	<SequentialEvents names="{['first','second','third']}"></SequentialEvents>
+	<SequentialEvents names="{['first','second','third']}"></SequentialEvents> -->
 
 	<Button filled on:click={handleSwitchToReview}>Match Review</Button>
 </div>
@@ -31,8 +40,8 @@
   @use '../../css/theme.scss';
 
   .wrapper {
-    height: 80vh;
-	margin-top: 1em;
+    height: 75vh;
+	margin-top: 0.5em;
     background-color: theme.$secondary-color;
 	border-radius: theme.$border-radius;
     -moz-box-sizing: border-box;
@@ -42,7 +51,19 @@
 
 	//Styling for Barebones
 	display:flex;
+	flex-direction: column;
 	justify-content: flex-start;
-	align-items: flex-start;
+	align-items: center;
+  }
+
+  .community {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.5em;
+  }
+
+  .chargingstation {
+
   }
 </style>

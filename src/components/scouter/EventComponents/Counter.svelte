@@ -5,14 +5,19 @@ The name must be descriptive and short, as it will be used (with little modifica
 -->
 <svelte:options accessors={true}/>
 <script>
-	import {Button} from "attractions";
-	import {CountEvent} from "../../classes/CountEvent.js";
-	import {timeline} from '../timeline.js';
-	import {time} from '../../time.js';
+	import { Button } from "attractions";
+	import { CountEvent } from "../../classes/CountEvent.js";
+	import { time } from '../../time.js';
+	import BigButton from "../custom/BigButton.svelte";
+	import { timeline } from '../timeline.js';
 
 	export let name = "Unknown";
 	export let amount = 0;
 	export let isDisabled = false;
+
+	//If dimensions are supplied, it will use the BigButton Component
+	export let width = null;
+	export let height = null;
 
 	//The internal event name is the label lowercase and all spaces replaced with underscores.
 	//"High Goal" becomes "high_goal"
@@ -26,9 +31,16 @@ The name must be descriptive and short, as it will be used (with little modifica
 </script>
 
 <!--This button will both handle and forward the click event.-->
-<Button filled on:click={handleClick} on:click disabled={isDisabled}>
-	<slot></slot>
-</Button>
+{#if width != null}
+	<BigButton on:click={handleClick} on:click disabled={isDisabled} width="{width}" height="{height}">
+		<slot></slot>
+	</BigButton>
+{:else}
+	<Button filled on:click={handleClick} on:click disabled={isDisabled}>
+		<slot></slot>
+	</Button>
+{/if}
+
 
 <style lang="scss">
 
