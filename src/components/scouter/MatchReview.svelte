@@ -46,7 +46,7 @@
 
   .wrapper {
     height: 80vh;
-    margin-top: 1em;
+    margin-top: 0.5em;
     background-color: theme.$secondary-color;
     border-radius: theme.$border-radius;
     -moz-box-sizing: border-box;

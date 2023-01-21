@@ -7,6 +7,7 @@
 	import MatchReview from "../components/scouter/MatchReview.svelte";
 	import {get} from "svelte/store";
 	import {timeline} from "../components/scouter/timeline.js";
+    import ProgressBar from "../components/scouter/ProgressBar.svelte";
 
 	let scouterAssignment = "Unknown";
 	let teamNumber = "Unknown";
@@ -109,6 +110,7 @@
 
 <main>
 	<InfoBar teamNumber={teamNumber} scouterID={scouterAssignment} connected={connected}/>
+	<ProgressBar></ProgressBar>
 	{#if pageMode == "scouting"}
 		<!--This is where all the input and buttons are.-->
 		<InputBox on:switchPageMode={switchPageMode}/>
