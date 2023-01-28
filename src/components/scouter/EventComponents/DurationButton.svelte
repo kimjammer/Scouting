@@ -63,6 +63,11 @@ The name must be descriptive and short, as it will be used (with little modifica
 		//Append to the writable store
 		$timeline = [...$timeline, event]
 	}
+
+	//If the time reaches zero, end any currently running events
+	$: if ($time === 0 && inProgress) {
+		processDurationEnd();
+	}
 </script>
 
 <Button outline on:click={handleClick} on:click selected={inProgress} disabled={isDisabled}>

@@ -14,6 +14,9 @@
 	let connected = false;
 	let matchNumber = 0;
 
+	//This is bound to the value of the comment box text input.
+	let commentBox;
+
 	let pageMode = "scouting";
 	const switchPageMode = () => {
 		if (pageMode === "scouting") {
@@ -62,6 +65,8 @@
 		for (let i = 0; i < timelineCopy.length; i ++) {
 			let event = timelineCopy[i]
 			let eventType = event.constructor.name;
+			let numscore = 0;
+			let chargestate = "nothing"
 
 			/* Automatic Conversions of known event types */
 
@@ -89,7 +94,40 @@
 			}
 
 			/* Manual Conversion of special, game-specific elements */
-
+			//this set of functions will keep track of the points scored by the team during teleop
+			if (time<135){
+				if (eventType === "high"){
+					numscore += 5
+				}
+				else if (eventType === "middle"){
+					numscore += 3
+				}
+				else if (eventType === "low"){
+					numscore += 2
+				}
+			}
+			//this set does points during auton
+			if (time>135){
+				if (eventType === "high"){
+				numscore += 6
+				}
+				else if (eventType === "middle"){
+					numscore += 4
+				}
+				else if (eventType === "low"){
+					numscore += 3
+				}
+			}
+			//this set of functions will record the last pressed button in the charge state
+			if (eventType === "nothing"){
+					chargestate = "nothing"
+				}
+				else if (eventType === "docked"){
+					chargestate = "docked"
+				}
+				else if (eventType === "engaged"){
+					chargestate = "engaged"
+				}
 			//None in the barebones example, place custom code here.
 		}
 
@@ -98,7 +136,10 @@
 
 	//Convert the timeline to an object and send to server.
 	const matchSumbit = () => {
-		socket.emit("matchSubmit", convertTimelineToObj(), teamNumber, matchNumber, scouterAssignment);
+		let submitObj = convertTimelineToObj();
+		submitObj.comment = commentBox;
+
+		socket.emit("matchSubmit", submitObj, teamNumber, matchNumber, scouterAssignment);
 		//Clear the timeline
 		timeline.set([]);
 	}
@@ -116,7 +157,7 @@
 		<InputBox on:switchPageMode={switchPageMode}/>
 	{:else}
 		<!--This is where the scouter reviews their inputs and submits it.-->
-		<MatchReview on:switchPageMode={switchPageMode} on:matchSubmit={matchSumbit}/>
+		<MatchReview on:switchPageMode={switchPageMode} on:matchSubmit={matchSumbit} bind:commentBox bind:connected/>
 	{/if}
 </main>
 

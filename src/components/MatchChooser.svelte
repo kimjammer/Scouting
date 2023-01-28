@@ -16,7 +16,6 @@
 
 			//When the match list is received, updated the matches variable to show the user.
 			socket.on("matchList", (matchList, teamNum) => {
-				console.log(matchList);
 				matches = matchList;
 				teamNumber = teamNum;
 			});

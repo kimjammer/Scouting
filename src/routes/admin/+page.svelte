@@ -1,10 +1,11 @@
 <script>
 	import { io } from "socket.io-client";
+	import { onMount } from "svelte";
 	import AdminInfoBar from "../../components/AdminInfoBar.svelte";
+	import ProgressBar from "../../components/scouter/ProgressBar.svelte";
 	import MatchQueuer from "../../components/MatchQueuer.svelte";
-	import {onMount} from "svelte";
+	import { time } from "../../components/time.js";
 	import TimeController from "../../components/TimeController.svelte";
-	import {time} from "../../components/time.js";
 
 	let scouterAssignments;
 
@@ -45,6 +46,7 @@
 
 <main>
 	<AdminInfoBar bind:scouterAssignments={scouterAssignments}/>
+	<ProgressBar/>
 	<div class="contentBox">
 		<MatchQueuer on:queueTeams={teamAssignment}/>
 		<TimeController on:matchOver={broadcastMatchOver}/>
@@ -64,5 +66,7 @@
 	display: flex;
 	justify-content: center;
 	gap: 1em;
+	margin-top: 0.5em;
+	height: 75vh;
   }
 </style>

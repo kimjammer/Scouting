@@ -1,17 +1,12 @@
 <script>
 	import { Button, Card } from "attractions";
 	import { createEventDispatcher } from "svelte";
-	import BigButton from "./custom/BigButton.svelte";
 	import Counter from "./EventComponents/Counter.svelte";
 	import ExclusiveDurationButtons from "./EventComponents/ExclusiveDurationButtons.svelte";
 
 	const dispatch = createEventDispatcher();
 	const handleSwitchToReview = () => {
 		dispatch("switchPageMode");
-	}
-
-	function test() {
-		console.log("HI");
 	}
 </script>
 
@@ -23,7 +18,7 @@
 		<Counter name="low" amount="1" width="30vw" height="5vh">Low</Counter>
 	</div>
 	<div class="chargingstation">
-		<ExclusiveDurationButtons labels="{['nothing','docked','engaged']}" names="{['Nothing','Docked (Not Balanced)','Engaged (Balanced)']}"></ExclusiveDurationButtons>
+		<ExclusiveDurationButtons labels="{['Nothing','Docked (Not Balanced)','Engaged (Balanced)']}" names="{['nothing','docked','engaged']}"></ExclusiveDurationButtons>
 	</div>
 	
 	<!-- <Counter name="High Goal" amount="1">High Goal</Counter>

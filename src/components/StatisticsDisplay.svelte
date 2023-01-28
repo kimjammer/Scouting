@@ -3,6 +3,8 @@
 	import {onMount} from "svelte";
 	export let socket;
 
+	let statistics = {};
+
 	onMount(() => {
 		//This code snippet waits for the socket to become defined by the parent before setting up functions
 		(async() => {
@@ -13,7 +15,8 @@
 
 			//When the stats for 1 match is received, update the UI
 			socket.on("matchStats", stats => {
-
+				statistics = stats;
+				console.log(stats);
 			});
 
 			//When the stats for the average of all matches is received, update the UI
@@ -27,6 +30,28 @@
 
 <div class="wrapper">
 	<Headline>Statistics</Headline>
+	
+	<div class="info">
+		Points Scored: {statistics.totalPoints || "Unknown"}
+	</div>
+	<div class="info">
+		Scored High: {statistics.highScore || "Unknown"}
+	</div>
+	<div class="info">
+		Scored Middle: {statistics.middleScore || "Unknown"}
+	</div>
+	<div class="info">
+		Scored Low: {statistics.lowScore || "Unknown"}
+	</div>
+	<div class="info">
+		Cycle Time: {statistics.cycleTime || "Unknown"} Objects/Second
+	</div>
+	<div class="info">
+		Final Charging Station State: {statistics.finalState || "Unknown"}
+	</div>
+	<div class="info">
+		Comment: {statistics.comment || "None"}
+	</div>
 </div>
 
 <style lang="scss">
@@ -45,4 +70,16 @@
 
     height: 80vh;
   }
+
+  .info {
+	color: white;
+	padding: 0.5em;
+	font-family: theme.$font;
+
+	background-color: theme.$main;
+	width: 75%;
+	border-radius: theme.$border-radius;
+	margin-top: 0.5em;
+  }
+
 </style>

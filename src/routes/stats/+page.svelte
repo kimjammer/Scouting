@@ -35,7 +35,7 @@
 	<div class="content">
 		<TeamList socket={socket}/>
 		<MatchChooser socket={socket}/>
-		<StatisticsDisplay/>
+		<StatisticsDisplay socket={socket}/>
 	</div>
 </main>
 

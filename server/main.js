@@ -9,7 +9,7 @@ import Match from "./models/matchModel.js";
 import TeamMatch from "./models/teamMatchModel.js";
 
 //Connect to mongodb database
-const dbURI = 'mongodb://localhost/FRCScouting'
+const dbURI = 'mongodb://127.0.0.1/FRCScouting'
 mongoose.connect(dbURI)
 	.then(result => {
 		console.log('Connected to db')
@@ -187,7 +187,7 @@ statsNetwork.on("connection", (socket) => {
 			matchList.push(match);
 		}
 
-		socket.emit("matchList", teamNum);
+		socket.emit("matchList", matchList, teamNum);
 	});
 
 	//When the statistics for 1 match is requested, get it and send it to the client.
@@ -197,6 +197,7 @@ statsNetwork.on("connection", (socket) => {
 		let teamMatch = await TeamMatch.findOne({match: matchDoc._id, team: teamDoc._id});
 
 		let stats = oneMatchStats(teamMatch);
+		console.log(stats);
 
 		socket.emit("matchStats", stats);
 	});

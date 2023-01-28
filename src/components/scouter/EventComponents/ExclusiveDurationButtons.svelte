@@ -3,7 +3,7 @@
 Needs labels and names for the duration buttons that it wil hold.
 This component holds mutually exclusive duration buttons. If one is active and another is clicked, the first button will
 automatically stop and the second duration event will begin.
-The labels must be descriptive and short, as it will be used (with little modification) as db key.
+The names must be descriptive and short, as it will be used (with little modification) as db key.
 -->
 <script>
 	import DurationButton from "./DurationButton.svelte";
