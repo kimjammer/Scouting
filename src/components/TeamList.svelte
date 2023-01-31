@@ -38,8 +38,6 @@
 			{team.teamNumber}
 		</Button>
 	{/each}
-
-
 </div>
 
 <style lang="scss">

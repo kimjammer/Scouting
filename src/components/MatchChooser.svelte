@@ -4,6 +4,7 @@
 
 	export let socket;
 	let matches = [];
+	let listAvailable = false;
 	let teamNumber;
 
 	onMount(() => {
@@ -18,6 +19,7 @@
 			socket.on("matchList", (matchList, teamNum) => {
 				matches = matchList;
 				teamNumber = teamNum;
+				listAvailable = true;
 			});
 		})();
 
@@ -37,14 +39,19 @@
 <div class="wrapper">
 	<Headline>Choose Match:</Headline>
 
-	<Button small on:click="{handleAverageSelect}">
-		<H1>Average</H1>
-	</Button>
-	{#each matches as match}
-		<Button small on:click={() => handleMatchSelect(match)}>
-			<H2>{match.matchNumber}</H2>
+	{#if listAvailable}
+		<Button small on:click="{handleAverageSelect}">
+			<H1>Average</H1>
 		</Button>
-	{/each}
+		{#each matches as match}
+			<Button small on:click={() => handleMatchSelect(match)}>
+				<H2>{match.matchNumber}</H2>
+			</Button>
+		{/each}
+	{:else}
+		<H2>No Team Selected</H2>
+	{/if}
+	
 </div>
 
 <style lang="scss">

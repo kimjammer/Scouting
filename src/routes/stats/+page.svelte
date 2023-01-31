@@ -1,10 +1,11 @@
 <script>
 	import io from "socket.io-client";
-	import TeamList from "../../components/TeamList.svelte";
-	import StatsInfoBar from "../../components/StatsInfoBar.svelte";
+	import { onMount } from "svelte";
+	import { Button } from "attractions";
 	import MatchChooser from "../../components/MatchChooser.svelte";
 	import StatisticsDisplay from "../../components/StatisticsDisplay.svelte";
-	import {onMount} from "svelte";
+	import StatsInfoBar from "../../components/StatsInfoBar.svelte";
+	import TeamList from "../../components/TeamList.svelte";
 
 	let socket;
 	let connected = false;
@@ -24,6 +25,10 @@
 		});
 	});
 
+	const handleDownload = () => {
+		
+	}
+
 </script>
 
 <svelte:head>
@@ -36,6 +41,7 @@
 		<TeamList socket={socket}/>
 		<MatchChooser socket={socket}/>
 		<StatisticsDisplay socket={socket}/>
+		<div><Button filled on:click={handleDownload}>Download CSV</Button></div>
 	</div>
 </main>
 
@@ -51,6 +57,7 @@
 
   .content{
 	display: flex;
+	align-items: end;
 	gap: 0.5em;
   }
 </style>

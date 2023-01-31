@@ -1,7 +1,7 @@
 import  mongoose  from "mongoose";
 import { Server } from "socket.io";
 import {getKeyByValue} from "./utils.js";
-import {oneMatchStats} from "./stats.js";
+import {oneMatchStats, averageTeamStats} from "./stats.js";
 
 //Import database schemas
 import Team from "./models/teamModel.js";
@@ -197,7 +197,7 @@ statsNetwork.on("connection", (socket) => {
 		let teamMatch = await TeamMatch.findOne({match: matchDoc._id, team: teamDoc._id});
 
 		let stats = oneMatchStats(teamMatch);
-		console.log(stats);
+		stats.teamNum = teamNum;
 
 		socket.emit("matchStats", stats);
 	});
@@ -217,7 +217,8 @@ statsNetwork.on("connection", (socket) => {
 			teamMatchList.push(await TeamMatch.findById(matchID));
 		}
 
-		let stats = averageStats(teamMatchList);
+		let stats = averageTeamStats(teamMatchList);
+		stats.teamNum = teamNum;
 
 		socket.emit("averageStats", stats);
 	});

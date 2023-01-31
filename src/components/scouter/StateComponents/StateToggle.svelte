@@ -26,8 +26,6 @@ This should not be data that needs to be remembered, as it will not be included 
 		}else{
 			$gameState[`${gameStateName}`] = true;
 		}
-
-		console.log($gameState)
 	};
 </script>
 
