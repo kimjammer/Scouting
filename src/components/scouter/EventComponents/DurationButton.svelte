@@ -7,6 +7,7 @@ The name must be descriptive and short, as it will be used (with little modifica
 <script>
 	import {Button} from "attractions";
 	import {DurationEvent} from "../../classes/DurationEvent.js";
+	import BigButton from "../custom/BigButton.svelte";
 	import {timeline} from '../timeline.js';
 	import {time} from '../../time.js';
 	import {createEventDispatcher} from "svelte";
@@ -27,6 +28,10 @@ The name must be descriptive and short, as it will be used (with little modifica
 	let inProgress = false;
 	let startTime = 0;
 	let endTime = 0;
+
+	//If dimensions are supplied, it will use the BigButton Component
+	export let width = null;
+	export let height = null;
 
 	//If the parent component (ExclusiveDurationButtons) calls this function, the button will end its current event
 	//if there is one running, as long as it wasn't this button that just started.
@@ -70,9 +75,16 @@ The name must be descriptive and short, as it will be used (with little modifica
 	}
 </script>
 
-<Button outline on:click={handleClick} on:click selected={inProgress} disabled={isDisabled}>
-	<slot></slot>
-</Button>
+{#if width != null}
+	<BigButton on:click={handleClick} on:click filled={inProgress} disabled={isDisabled || $time === 0} width="{width}" height="{height}" outline>
+		<slot></slot>
+	</BigButton>
+{:else}
+	<Button filled on:click={handleClick} on:click selected={inProgress} disabled={isDisabled || $time === 0}>
+		<slot></slot>
+	</Button>
+{/if}
+
 
 <style lang="scss">
 

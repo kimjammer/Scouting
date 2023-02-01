@@ -276,7 +276,6 @@ Use with width and length
     }
 
     .card {
-        background-color: vars.$main;
         border-radius: vars.$card-radius;
         box-shadow: vars.$shadow-0;
         overflow: hidden;
@@ -300,11 +299,6 @@ Use with width and length
 
         &.no-padding {
             padding: 0;
-        }
-
-        &.outline {
-            border: 1px solid color.adjust(vars.$main, $alpha: -0.7);
-            box-shadow: none;
         }
 
         @include flat-interactive-background(vars.$main);
@@ -359,6 +353,7 @@ Use with width and length
 
         &.outline {
             border: 1px solid vars.$main;
+            color: black;
 
             &.danger {
                 border-color: vars.$danger;

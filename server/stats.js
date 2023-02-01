@@ -91,8 +91,3 @@ export const averageTeamStats = (matchList) => {
 
     return statistics;
 }
-
-//This function generates a csv string of all of the average team statistics
-export const generateCSV = () => {
-    
-}

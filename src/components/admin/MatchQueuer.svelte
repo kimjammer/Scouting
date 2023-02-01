@@ -51,6 +51,10 @@
 				return true;
 			}
 		}
+		if (typeof matchNum != "number" || matchNum <= 0) {
+			errorMessage = "Match number is invalid."
+			return true;
+		}
 	}
 </script>
 
@@ -73,7 +77,7 @@
 
 	<!--This is an error box.-->
 	{#if showError}
-		<div id="submitConfirmDialog">
+		<div id="errorBox">
 			<Dialog title="Error" closeCallback={handleErrorClose}>
 				{errorMessage}
 			</Dialog>

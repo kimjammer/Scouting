@@ -178,6 +178,8 @@ Client:
 
 `requestAverageStats` - Scouter asks the server for the statistics for all matches played by a team, identified by their team number.
 
+`requestStatsDownload` - Scouter asks the server for a download of the statistics in CSV form.
+
 Server:
 
 `teamList` - Sends the stats client a list of all teams.
@@ -187,6 +189,8 @@ Server:
 `matchStats` - Sends the stats client the statistics for 1 match.
 
 `averageStats` - Sends the stats client the average statistics for all matches played by a team.
+
+`statsDownload` - Sends the stats client a CSV file as a string.
 
 ## Other Notes:
 

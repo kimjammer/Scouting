@@ -1,6 +1,6 @@
 <script>
 	import {createEventDispatcher, onDestroy} from "svelte";
-	import {time} from "./time.js";
+	import {time} from "../time.js";
 	import {Button} from "attractions";
 
 	const dispatch = createEventDispatcher();

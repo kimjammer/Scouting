@@ -1,11 +1,11 @@
 <script>
 	import { io } from "socket.io-client";
 	import { onMount } from "svelte";
-	import AdminInfoBar from "../../components/AdminInfoBar.svelte";
+	import AdminInfoBar from "../../components/admin/AdminInfoBar.svelte";
 	import ProgressBar from "../../components/scouter/ProgressBar.svelte";
-	import MatchQueuer from "../../components/MatchQueuer.svelte";
+	import MatchQueuer from "../../components/admin/MatchQueuer.svelte";
 	import { time } from "../../components/time.js";
-	import TimeController from "../../components/TimeController.svelte";
+	import TimeController from "../../components/admin/TimeController.svelte";
 
 	let scouterAssignments;
 

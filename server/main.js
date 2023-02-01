@@ -222,6 +222,28 @@ statsNetwork.on("connection", (socket) => {
 
 		socket.emit("averageStats", stats);
 	});
+
+	//Compile average statistics for every team and turn them into a CSV string.
+	socket.on("requestStatsDownload", async () => {
+		let CSVstring = "Team Number,Average Total Points,Average Auton Points,Average High Scored,Average Middle Scored,Average Low Scored,Average Cycle Time (Seconds/Object),Most Common Charging Station State\n";
+
+		let allTeams = await Team.find({});
+
+		for (let i = 0; i < allTeams.length; i++) {
+			let teamMatchList = await TeamMatch.find({team: allTeams[i]._id})
+
+			console.log(teamMatchList);
+			//If a team has no matches, skip them
+			if (teamMatchList.length === 0) continue;
+
+			let stats = averageTeamStats(teamMatchList);
+			stats.teamNum = allTeams[i].teamNumber;
+
+			CSVstring += `${stats.teamNum},${stats.avgTotalPoints},${stats.avgAutonPoints},${stats.avgHighScore},${stats.avgMiddleScore},${stats.avgLowScore},${stats.avgCycleTime},${stats.modeFinalState}\n`
+		}
+
+		socket.emit("statsDownload", CSVstring);
+	})
 });
 
 console.log("Server Initialized.");

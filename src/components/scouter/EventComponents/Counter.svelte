@@ -32,7 +32,7 @@ The name must be descriptive and short, as it will be used (with little modifica
 
 <!--This button will both handle and forward the click event.-->
 {#if width != null}
-	<BigButton on:click={handleClick} on:click disabled={isDisabled} width="{width}" height="{height}">
+	<BigButton on:click={handleClick} on:click disabled={isDisabled} width="{width}" height="{height}" filled>
 		<slot></slot>
 	</BigButton>
 {:else}

@@ -18,15 +18,8 @@
 		<Counter name="low" amount="1" width="30vw" height="5vh">Low</Counter>
 	</div>
 	<div class="chargingstation">
-		<ExclusiveDurationButtons labels="{['Nothing','Docked (Not Balanced)','Engaged (Balanced)']}" names="{['nothing','docked','engaged']}"></ExclusiveDurationButtons>
+		<ExclusiveDurationButtons labels="{['Nothing','Docked (Not Balanced)','Engaged (Balanced)']}" names="{['nothing','docked','engaged']}" width="10vw" length="10vh"></ExclusiveDurationButtons>
 	</div>
-	
-	<!-- <Counter name="High Goal" amount="1">High Goal</Counter>
-	<DurationButton name="Hanging">Hanging</DurationButton>
-	<StateToggle name="Bonus Mode">Bonus Mode</StateToggle>
-	<Defense></Defense>
-	<MechanicalErrors></MechanicalErrors>
-	<SequentialEvents names="{['first','second','third']}"></SequentialEvents> -->
 
 	<Button filled on:click={handleSwitchToReview}>Match Review</Button>
 </div>

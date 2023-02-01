@@ -13,6 +13,10 @@ The names must be descriptive and short, as it will be used (with little modific
 	export let labels = [];
 	export let names = [];
 
+	//If dimensions are supplied, it will use the DurationButtons will use the BigButton Component
+	export let width = null;
+	export let height = null;
+
 	//This is the endDuration function in all of the children Duration Buttons.
 	let childrenButtons = [];
 
@@ -27,7 +31,7 @@ The names must be descriptive and short, as it will be used (with little modific
 
 <div class="wrapper">
 	{#each labels as label, i}
-		<DurationButton name="{names[i]}" bind:this={childrenButtons[i]} on:durationBtnPressed={handleChildClick}>{label}</DurationButton>
+		<DurationButton name="{names[i]}" bind:this={childrenButtons[i]} on:durationBtnPressed={handleChildClick} width="{width}" height="{height}">{label}</DurationButton>
 	{/each}
 </div>
 

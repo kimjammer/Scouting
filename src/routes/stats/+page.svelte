@@ -2,13 +2,16 @@
 	import io from "socket.io-client";
 	import { onMount } from "svelte";
 	import { Button } from "attractions";
-	import MatchChooser from "../../components/MatchChooser.svelte";
-	import StatisticsDisplay from "../../components/StatisticsDisplay.svelte";
-	import StatsInfoBar from "../../components/StatsInfoBar.svelte";
-	import TeamList from "../../components/TeamList.svelte";
+	import MatchChooser from "../../components/stats/MatchChooser.svelte";
+	import StatisticsDisplay from "../../components/stats/StatisticsDisplay.svelte";
+	import StatsInfoBar from "../../components/stats/StatsInfoBar.svelte";
+	import TeamList from "../../components/stats/TeamList.svelte";
 
 	let socket;
 	let connected = false;
+
+	let downloadContainer;
+
 	onMount(() => {
 		//Connect to server socket.io
 		//This socket object is passed down to the children, who will use it to get data from the server.
@@ -23,10 +26,25 @@
 		socket.on("disconnect", () => {
 			connected = false;
 		});
+
+		//When we recieve a stats csv download, initiate a download
+		socket.on("statsDownload", (CSVstring) => {
+			const element = document.createElement('a');
+
+			element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(CSVstring));
+			element.setAttribute('download', "ScoutingData.csv");
+
+			element.style.display = 'none';
+			downloadContainer.appendChild(element);
+
+			element.click();
+
+			downloadContainer.removeChild(element);
+		})
 	});
 
 	const handleDownload = () => {
-		
+		socket.emit("requestStatsDownload");
 	}
 
 </script>
@@ -43,6 +61,7 @@
 		<StatisticsDisplay socket={socket}/>
 		<div><Button filled on:click={handleDownload}>Download CSV</Button></div>
 	</div>
+	<div bind:this={downloadContainer}></div>
 </main>
 
 <style lang="scss">

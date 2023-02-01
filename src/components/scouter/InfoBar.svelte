@@ -1,9 +1,9 @@
 <script>
-	import Timer from './scouter/Timer.svelte';
+	import Timer from './Timer.svelte';
 	import {Button} from 'attractions';
-	import {timeline} from "./scouter/timeline.js";
-	import {time} from "./time.js";
-	import {MistakeEvent} from "./classes/MistakeEvent.js";
+	import {timeline} from "./timeline.js";
+	import {time} from "../time.js";
+	import {MistakeEvent} from "../classes/MistakeEvent.js";
 
 	export let teamNumber = 9999;
 	export let scouterID = "A0";

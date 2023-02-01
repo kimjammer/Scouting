@@ -1,6 +1,6 @@
 <script>
 	import { io } from "socket.io-client";
-	import InfoBar from "../components/InfoBar.svelte";
+	import InfoBar from "../components/scouter/InfoBar.svelte";
 	import InputBox from "../components/scouter/InputBox.svelte"
 	import {time} from "../components/time.js";
 	import {onMount} from "svelte";
@@ -146,6 +146,7 @@
 	const matchSumbit = () => {
 		let submitObj = convertTimelineToObj();
 		submitObj.comment = commentBox;
+		commentBox = "";
 
 		socket.emit("matchSubmit", submitObj, teamNumber, matchNumber, scouterAssignment);
 		//Clear the timeline

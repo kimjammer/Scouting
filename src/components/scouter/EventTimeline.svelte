@@ -44,6 +44,8 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     padding: 0.3em;
+	max-height: 55vh;
+	overflow-y: scroll;
   }
 
   .eventItem {

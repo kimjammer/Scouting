@@ -1,5 +1,5 @@
 <script>
-	import Timer from './scouter/Timer.svelte';
+	import Timer from '../scouter/Timer.svelte';
 
 	export let scouterAssignments = {
 		R1: null,
