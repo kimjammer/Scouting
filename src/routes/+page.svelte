@@ -61,14 +61,14 @@
 	const convertTimelineToObj = () => {
 		let timelineCopy = get(timeline);
 		let matchObject = {};
+		let numScore = 0;
+		let autonScore = 0;
+		let chargeState = "nothing"
 
 		for (let i = 0; i < timelineCopy.length; i ++) {
 			let event = timelineCopy[i]
 			let eventType = event.constructor.name;
-			let numScore = 0;
-			let autonScore = 0;
-			let chargestate = "nothing"
-
+			
 			/* Automatic Conversions of known event types */
 
 			//Handle CountEvent
@@ -97,43 +97,42 @@
 			/* Manual Conversion of special, game-specific elements */
 
 			//This set of functions will keep track of the points scored by the team during teleop
-			if (time<135){
-				if (eventType === "high"){
+			if ($time < 135){
+				if (event.eventName === "high"){
 					numScore += 5;
 				}
-				else if (eventType === "middle"){
+				else if (event.eventName === "middle"){
 					numScore += 3;
 				}
-				else if (eventType === "low"){
+				else if (event.eventName === "low"){
 					numScore += 2;
 				}
 			}
 			//this set does points during auton
-			if (time>135){
-				if (eventType === "high"){
+			if ($time > 135){
+				if (event.eventName === "high"){
 					numScore += 6;
 					autonScore += 6;
 				}
-				else if (eventType === "middle"){
+				else if (event.eventName === "middle"){
 					numScore += 4;
 					autonScore += 4;
 				}
-				else if (eventType === "low"){
+				else if (event.eventName === "low"){
 					numScore += 3;
 					autonScore += 3;
 				}
 			}
 			//this set of functions will record the last pressed button in the charge state
 			if (event.eventName === "nothing"){
-				chargestate = "Nothing"
+				chargeState = "Nothing"
 			}
 			else if (event.eventName === "docked"){
-				chargestate = "Docked"
+				chargeState = "Docked"
 			}
 			else if (event.eventName === "engaged"){
-				chargestate = "Engaged"
+				chargeState = "Engaged"
 			}
-			
 		}
 		matchObject.totalScore = numScore;
 		matchObject.autonScore = autonScore;

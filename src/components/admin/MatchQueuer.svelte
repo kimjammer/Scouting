@@ -25,19 +25,10 @@
 	let matchNum = null;
 
 	const dispatch = createEventDispatcher();
-	const queueMatch = () => {
-		//If the error checking function returns true, break.
-		if (!checkForErrors()) return;
-
-		//Creates an event to tell the parent element (admin.svelte) to tell the server the team assignments.
-		dispatch('queueTeams', {
-			teamAssignments: teamAssignments,
-			matchNum: matchNum,
-		});
-	}
 
 	const checkForErrors = () => {
-		for (let item in teamAssignments) {
+		for (let key in teamAssignments) {
+			let item = teamAssignments[key];
 			if (item === null) {
 				errorMessage = "All Teams must be defined."
 				return true;
@@ -55,6 +46,20 @@
 			errorMessage = "Match number is invalid."
 			return true;
 		}
+	}
+
+	const queueMatch = () => {
+		//If the error checking function returns true, break.
+		if (checkForErrors()) {
+			showError = true;
+			return;
+		}
+
+		//Creates an event to tell the parent element (admin.svelte) to tell the server the team assignments.
+		dispatch('queueTeams', {
+			teamAssignments: teamAssignments,
+			matchNum: matchNum,
+		});
 	}
 </script>
 

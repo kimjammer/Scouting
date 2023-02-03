@@ -5,13 +5,18 @@ import assert from "assert";
 //Takes a list of objects and a property name and averages the specified property.
 const averageProperty = (objects, property) => {
     let sum = 0;
+    let skipped = 0;
 
-    for (let i=0; i < objects.length; i++){
-        assert(typeof objects[i][`${property}`] == 'number');
+    for (let i=0; i < objects.length; i++){ 
+        //If an invalid value is found, skip it and fix the average.
+        if (typeof objects[i][`${property}`] != 'number') {
+            skipped ++;
+            continue;
+        }
         sum += objects[i][`${property}`]
     }
 
-    return sum / objects.length;
+    return sum / (objects.length - skipped);
 }
 
 //Gets the key(s) of the object with the greatest value

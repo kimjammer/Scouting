@@ -4,7 +4,7 @@
 	"scripts": {
 		"dev": "vite dev --port 80 --host",
 		"build": "vite build",
-		"preview": "vite preview --host",
+		"preview": "vite preview --port 80 --host",
 		"startserver": "node ./server/main.js",
 		"competitionLinux": "node ./server/main.js & vite build && node build",
 		"competitionWin": "start node ./server/main.js && vite build && node build"
