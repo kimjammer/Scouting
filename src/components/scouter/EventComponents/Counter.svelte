@@ -14,6 +14,8 @@ The name must be descriptive and short, as it will be used (with little modifica
 	export let name = "Unknown";
 	export let amount = 0;
 	export let isDisabled = false;
+	let changeColor = true; 
+	let classChange = " ";
 
 	//If dimensions are supplied, it will use the BigButton Component
 	export let width = null;
@@ -32,16 +34,25 @@ The name must be descriptive and short, as it will be used (with little modifica
 
 <!--This button will both handle and forward the click event.-->
 {#if width != null}
-	<BigButton on:click={handleClick} on:click disabled={isDisabled} width="{width}" height="{height}" filled>
+	<div class = {classChange}>
+		<BigButton on:click={handleClick} on:click disabled={isDisabled} width="{width}" height="{height}" filled>
 		<slot></slot>
 	</BigButton>
+	</div>
 {:else}
+<div class = {classChange}>
 	<Button filled on:click={handleClick} on:click disabled={isDisabled}>
 		<slot></slot>
 	</Button>
+	</div>
 {/if}
 
 
 <style lang="scss">
-
+.no { 
+	color : red; 
+}
+.yes { 
+	color : #005035;
+}
 </style>

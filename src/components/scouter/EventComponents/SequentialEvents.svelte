@@ -27,6 +27,7 @@ The names must be descriptive and short, as it will be used (with little modific
 		//Enable the next button
 		childrenButtons[id+1].isDisabled = false;
 	}
+	
 
 	onMount(() => {
 		//Set the first button to be unlocked

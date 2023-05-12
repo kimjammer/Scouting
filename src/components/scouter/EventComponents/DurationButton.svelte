@@ -76,11 +76,11 @@ The name must be descriptive and short, as it will be used (with little modifica
 </script>
 
 {#if width != null}
-	<BigButton on:click={handleClick} on:click filled={inProgress} disabled={isDisabled || $time === 0} width="{width}" height="{height}" outline>
+	<BigButton on:click={handleClick} on:click filled={inProgress} disabled={isDisabled} width="{width}" height="{height}" outline>
 		<slot></slot>
 	</BigButton>
 {:else}
-	<Button filled on:click={handleClick} on:click selected={inProgress} disabled={isDisabled || $time === 0}>
+	<Button filled on:click={handleClick} on:click selected={inProgress} disabled={isDisabled}>
 		<slot></slot>
 	</Button>
 {/if}

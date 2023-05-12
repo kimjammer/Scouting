@@ -47,7 +47,7 @@
 		<H1>Comment Box:</H1>
 		<Subhead>
 			Write any intesting information like mechanical failures, or their preference 
-			for game objects.
+			for game objects, !!!IMPORTANT!!! <b> make sure to include where the robot picks up game objects from i.e floor, chute, or shelf.</b>
 		</Subhead>
 		<TextField multiline bind:value={commentBox}></TextField>
 	</div>
@@ -89,6 +89,7 @@
     padding: 0.7em;
 	display:flex;
 	gap: 2em;
+	
   }
 
   #submitConfirmDialog {
@@ -107,5 +108,8 @@
 	position: fixed;
     left: 50%;
     transform: translate(-50%, 0);
+  }
+  .right {
+	
   }
 </style>

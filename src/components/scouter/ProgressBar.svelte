@@ -4,7 +4,9 @@
     $: timePercent = $time / 150 * 100;
 
     $: currentMode = "None";
+
     $: {
+        //Using the time variable, this sets the current mode to different modes depending on the time 
         if ($time === 0) {
             currentMode = "None";
         }else if ($time >= 135) {
@@ -16,7 +18,7 @@
         }
     }
 </script>
-
+<!--uses the current mode to set the class of the progress bar to change the color of the bar in different modes-->
 <div class="wrapper">
     <div class="background">
         <div class = "foreground" style="--timeWidth: {timePercent}%;" 
@@ -33,14 +35,14 @@
 
     .wrapper {
         width: 100%;
-        height: 5vh;
+        height: 5.4vh;
         margin-top: 0.5em;
     }
 
     .background {
         width: 100%;
         height: 100%;
-        background-color: green;
+        background-color: rgb(255, 255, 255);
         border-radius: 0.5em;
     }
 
@@ -60,28 +62,31 @@
             rgb(75,75,75) 10px,
             rgb(75, 75, 75) 20px);
     }
+    // Css code for the color of the progress bar during Auton mode
     .auton {
         background: repeating-linear-gradient(
             -55deg,
-            #34b233,
-            #34b233 10px,
-            #006c00 10px,
-            #006c00 20px);
+            #7ee439,
+            #30cf10 10px,
+            #00a220 10px,
+            #014510 20px);
     }
+    // CSS code for the color of the progress bar during teleop mode
     .teleop {
         background: repeating-linear-gradient(
             -55deg,
-            #01afff,
-            #01afff 10px,
-            #0073a2 10px,
-            #0073a2 20px);
+            #00f2ff,
+            #04bad2 10px,
+            #017893 10px,
+            #013e4a 20px);
     }
+    //CSS code for the color of the progress bar during endgame
     .endgame {
         background: repeating-linear-gradient(
             -55deg,
-            #ff4545,
-            #ff4545 10px,
-            #a42626 10px,
-            #a42626 20px);
+            #fd0000,
+            #c40000 10px,
+            #750000 10px,
+            #290000 20px);
     }
 </style>

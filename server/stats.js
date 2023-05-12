@@ -16,7 +16,7 @@ const averageProperty = (objects, property) => {
         sum += objects[i][`${property}`]
     }
 
-    return sum / (objects.length - skipped);
+    return sum / (objects.length - 0);
 }
 
 //Gets the key(s) of the object with the greatest value
@@ -65,15 +65,28 @@ export const oneMatchStats = (teamMatch) => {
     statistics.autonPoints = teamMatch.data.autonScore;
 
     //Calculate Cycle Time
-    let totalScore = teamMatch.data.high + teamMatch.data.middle + teamMatch.data.low;
-    statistics.cycleTime = round(150 / totalScore); //150 seconds in a match. This results in seconds per object
-
+    let totalScore = (teamMatch.data.high ?? 0) + (teamMatch.data.middle ?? 0) + (teamMatch.data.low ?? 0);
+   if (totalScore == 0 ) {
+    statistics.cycleTime = "None"; //150 seconds in a match. This results in seconds per object
+   }
+   else {
+    statistics.cycleTime = round(150 / totalScore)
+   }
     //Final Charging Station State
     statistics.finalState = teamMatch.data.finalChargeState;
 
     //Comments
     statistics.comment = teamMatch.data.comment;
 
+    statistics.coneCount = teamMatch.data.coneCount;
+    statistics.cubeCount = teamMatch.data.cubeCount;
+
+    statistics.cubeHigh = teamMatch.data.cubeHigh; 
+    statistics.cubeMid = teamMatch.data.cubeMid;
+    statistics.cubeLow = teamMatch.data.cubeLow;
+    statistics.coneHigh = teamMatch.data.coneHigh; 
+    statistics.coneMid = teamMatch.data.coneMid;
+    statistics.coneLow = teamMatch.data.coneLow;
     return statistics;
 }
 
@@ -90,9 +103,23 @@ export const averageTeamStats = (matchList) => {
     statistics.avgHighScore = round(averageProperty(individualStats, "highScore"));
     statistics.avgMiddleScore = round(averageProperty(individualStats, "middleScore"));
     statistics.avgLowScore = round(averageProperty(individualStats, "lowScore"));
-    statistics.avgCycleTime = round(averageProperty(individualStats, "cycleTime"));
+    // statistics.avgCycleTime = round(averageProperty(individualStats, "cycleTime"));
+    statistics.avgCycleTime = round(150 / (statistics.avgHighScore + statistics.avgLowScore + statistics.avgMiddleScore));
     
     statistics.modeFinalState = modeProperty(individualStats, "finalState");
 
+    //Compiles all comments into one string.
+    statistics.comment = "";
+    for (let matchIndex in individualStats) {
+        statistics.comment += `${individualStats[matchIndex].comment}\n`;
+    }
+    statistics.avgConeCount = round(averageProperty(individualStats, "coneCount")) ;
+    statistics.avgCubeCount = round(averageProperty(individualStats, "cubeCount")) ;
+    statistics.avgConeHigh = round(averageProperty(individualStats , "coneHigh"));
+    statistics.avgConeMid = round(averageProperty(individualStats , "coneMid"));
+    statistics.avgConeLow = round(averageProperty(individualStats , "coneLow"));
+    statistics.avgCubeHigh = round(averageProperty(individualStats , "cubeHigh"));
+    statistics.avgCubeMid = round(averageProperty(individualStats , "cubeMid"));
+    statistics.avgCubeLow = round(averageProperty(individualStats , "cubeLow"));
     return statistics;
 }

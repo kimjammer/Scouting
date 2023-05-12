@@ -48,7 +48,8 @@ the backend server which manages the database and communication with the scouter
    (usually something like DESKTOP-S7X97ML), and you can use the name with .local on the end like this `http://DESKTOP-S7X97ML.local`
 4. On the scouters, go to the ip address or .local address in the URL bar. Make sure to add http://, or the computer will be confused
    1. If you are having issues (especially on chromebooks), this may be because the chromebooks didn't get an ip address
-   automatically assigned to them. You can run a DHCP server on the server/admin computer to resolve this.
+   automatically assigned to them. You can run a DHCP server on the server/admin computer to resolve this. If you do this, set the server to have a static IP within the IP pool you set for the DHCP
+   server.
 5. Confirm that all the radio symbols have turned green, and you are good to scout!
 
 **Below information is not needed to use the software, but it should greatly help in understanding and adapting the software for new games or teams.**

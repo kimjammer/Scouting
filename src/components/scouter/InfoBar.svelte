@@ -60,11 +60,13 @@
     height: 15%;
     background-color: theme.$secondary-color;
 
-	padding: 1em;
+	padding: 0.5em;
 	border-radius: theme.$border-radius;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
+
+
   }
   .middle {
     display: flex;
@@ -80,7 +82,7 @@
     align-items: center;
     text-align: center;
     font-size: x-large;
-    height: 100%;
+    height: 130%;
 	border-radius: theme.$border-radius;
 	padding: 0.3em;
 	background-color: #b9d143;

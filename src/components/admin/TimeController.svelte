@@ -26,7 +26,8 @@
 	}
 
 	const resetTimer = () => {
-		time.set(150);
+		//There is a 3 second grace interveral from auto to teleop to allow robots to balance (2023 season).
+		time.set(153);
 		clearInterval(interval);
 	}
 

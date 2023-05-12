@@ -19,7 +19,11 @@ mongoose.connect(dbURI)
 	})
 
 //Create Socket.io server
-const io = new Server(3001, { cors: {origin: "*"} });
+const io = new Server(3001, { 
+	cors: {origin: "*"},
+	pingInterval: 1000,
+	pingTimeout: 1000,
+});
 const adminNetwork = io.of("/admin")
 const statsNetwork = io.of("/stats")
 

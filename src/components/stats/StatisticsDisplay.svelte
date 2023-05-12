@@ -47,6 +47,30 @@
 			<div class="info">
 				Object Points in Auton: {statistics.autonPoints || "Unknown"}
 			</div>
+			<div class = "info">
+				 High Cones : {statistics.coneHigh || "Unkown"}
+			</div>
+			<div class = "info">
+				Mid Cones : {statistics.coneMid || "Unkown"}
+			</div>
+			<div class = "info">
+				 Low Cones  : {statistics.coneLow || "Unkown"}
+			</div>
+			<div class = "info">
+				 High cubes : {statistics.cubeHigh || "Unkown"}
+			</div>
+			<div class = "info">
+				 Mid cubes : {statistics.cubeMid || "Unkown"}
+			</div>
+			<div class = "info">
+				Low cubes : {statistics.cubeLow || "Unkown"}
+			</div>
+			<div class = "info">
+				Cones Scored: {statistics.coneCount || "Unknown"}
+			</div>
+			<div class = "info">
+				Cubes Scored: {statistics.cubeCount || "Unknown"}
+			</div>
 			<div class="info">
 				Scored High: {statistics.highScore || "Unknown"}
 			</div>
@@ -73,6 +97,31 @@
 			<div class="info">
 				Average Object Points Scored in Auton: {statistics.avgAutonPoints || "Unknown"}
 			</div>
+			<div class = "info">
+				Average High Cones : {statistics.avgConeHigh || "Unkown"}
+			</div>
+			<div class = "info">
+				Average Mid Cones : {statistics.avgConeMid || "Unkown"}
+			</div>
+			<div class = "info">
+				Average Low Cones  : {statistics.avgConeLow || "Unkown"}
+			</div>
+			<div class = "info">
+				Average High cubes : {statistics.avgCubeHigh || "Unkown"}
+			</div>
+			<div class = "info">
+				Average Mid cubes : {statistics.avgCubeMid || "Unkown"}
+			</div>
+			<div class = "info">
+				Average Low cubes : {statistics.avgCubeLow || "Unkown"}
+			</div>
+			<div class = "info">
+				Average Cones Scored: {statistics.avgConeCount || "Unknown"}
+
+			</div>
+			<div class = "info">
+				Average Cubes Scored: {statistics.avgCubeCount || "Unknown"}
+			</div>
 			<div class="info">
 				Average Scored High: {statistics.avgHighScore || "Unknown"}
 			</div>
@@ -87,6 +136,10 @@
 			</div>
 			<div class="info">
 				Most Common Charging Station State: {statistics.modeFinalState || "Unknown"}
+			</div>
+			<div class="info comment">
+				Comments From Matches: <br>
+			 {statistics.comment || "None"}
 			</div>
 		{:else}
 			<H2>No Match Selected</H2>
@@ -110,6 +163,7 @@
 
 	max-width: 50vw;
     height: 80vh;
+	
   }
 
   .infoContainer {
@@ -132,5 +186,6 @@
   .comment {
 	overflow-wrap: break-word;
 	overflow: auto;
+	white-space: pre-wrap;
   }
 </style>

@@ -16,7 +16,14 @@
 
 	//This is bound to the value of the comment box text input.
 	let commentBox;
-
+	let coneCount;
+	let cubeCount;
+	let cubeHigh;
+	let cubeMid; 
+	let cubeLow;
+	let coneHigh;
+	let coneMid; 
+	let coneLow;
 	let pageMode = "scouting";
 	const switchPageMode = () => {
 		if (pageMode === "scouting") {
@@ -145,7 +152,24 @@
 	const matchSumbit = () => {
 		let submitObj = convertTimelineToObj();
 		submitObj.comment = commentBox;
+		submitObj.coneCount = coneCount;
+		submitObj.cubeCount = cubeCount; 
+
+		submitObj.coneHigh = coneHigh; 
+		submitObj.coneMid = coneMid; 
+		submitObj.coneLow = coneLow;
+		submitObj.cubeHigh = cubeHigh ; 
+		submitObj.cubeMid = cubeMid; 
+		submitObj.cubeLow = cubeLow;
 		commentBox = "";
+		cubeHigh = 0; 
+	 	cubeMid = 0; 
+	 	cubeLow = 0; 
+		coneHigh = 0; 
+	 	coneMid = 0; 
+		coneLow = 0; 
+		coneCount = 0;
+		cubeCount = 0; 
 
 		socket.emit("matchSubmit", submitObj, teamNumber, matchNumber, scouterAssignment);
 		//Clear the timeline
@@ -162,7 +186,7 @@
 	<ProgressBar></ProgressBar>
 	{#if pageMode == "scouting"}
 		<!--This is where all the input and buttons are.-->
-		<InputBox on:switchPageMode={switchPageMode}/>
+		<InputBox bind:coneCount={coneCount} bind:cubeCount={cubeCount} bind:coneHigh = {coneHigh} bind:coneMid = {coneMid} bind:coneLow = {coneLow} bind:cubeHigh = {cubeHigh} bind:cubeMid = {cubeMid} bind:cubeLow ={cubeLow} on:switchPageMode={switchPageMode}/>
 	{:else}
 		<!--This is where the scouter reviews their inputs and submits it.-->
 		<MatchReview on:switchPageMode={switchPageMode} on:matchSubmit={matchSumbit} bind:commentBox bind:connected/>
