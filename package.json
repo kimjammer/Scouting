@@ -22,7 +22,7 @@
 	"license": "MIT",
 	"type": "module",
 	"dependencies": {
-		"mongoose": "^6.8.0",
+		"mongoose": "^6.13.6",
 		"socket.io": "^4.5.4",
 		"socket.io-client": "^4.5.4"
 	}
